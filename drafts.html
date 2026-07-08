@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ช่างนิรันดร์ — Thai Heritage Design Drafts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #7B3A2A;
+      --bg-dark:  #5E2B1F;
+      --bg-card:  #8F4433;
+      --gold:     #C8973A;
+      --gold-lt:  #E5B85A;
+      --gold-dim: rgba(200, 151, 58, 0.18);
+      --white:    #FDF8F2;
+      --text:     #FDF8F2;
+      --text-dim: rgba(253, 248, 242, 0.72);
+      --border:   rgba(200, 151, 58, 0.35);
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Sarabun', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--bg-dark);
+      border-bottom: 2px solid var(--gold);
+      text-align: center;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+
+    .header-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    header h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+
+    header h1 span {
+      color: var(--gold);
+    }
+
+    header p {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ── Gold divider ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0 auto 2.5rem;
+      max-width: 280px;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .divider-diamond {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ── Main ── */
+    main {
+      flex: 1;
+      padding: 3rem 1.25rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* ── Draft Cards ── */
+    .drafts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .draft-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .draft-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .draft-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+      border-color: var(--gold);
+    }
+
+    .draft-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold-dim);
+      line-height: 1;
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg-dark);
+      background: var(--gold);
+      border-radius: 4px;
+      padding: 0.25em 0.7em;
+      width: fit-content;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.35;
+    }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .card-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gold-lt);
+      letter-spacing: 0.04em;
+    }
+
+    .card-cta svg {
+      transition: transform 0.2s ease;
+    }
+
+    .draft-card:hover .card-cta svg {
+      transform: translateX(4px);
+    }
+
+    /* ── Back link ── */
+    .back-row {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.5rem 1.25rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .drafts-grid {
+        grid-template-columns: 1fr;
+      }
+      .draft-card {
+        padding: 1.6rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="header-eyebrow">BagIdeaOffice × ช่างนิรันดร์</p>
+    <h1>Thai Heritage <span>Design Drafts</span></h1>
+    <p>แบบร่างเว็บไซต์ลายไทย 3 แนวทาง — เลือกดูแต่ละ concept เพื่อเปรียบเทียบทิศทางการออกแบบ</p>
+  </header>
+
+  <main>
+    <p class="section-title">เลือก concept ที่ต้องการดู</p>
+
+    <div class="divider">
+      <span class="divider-diamond"></span>
+    </div>
+
+    <div class="drafts-grid">
+
+      <a href="thai-draft-1.html" class="draft-card">
+        <span class="card-number">01</span>
+        <span class="card-badge">Draft 1</span>
+        <h2 class="card-title">Sukhothai Earthen</h2>
+        <p class="card-subtitle">ดินสุโขทัย — โทนดิน อิฐ และทองโบราณ แรงบันดาลใจจากวัดเก่าแก่ยุคสุโขทัย</p>
+        <div class="card-cta">
+          ดู Draft นี้
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="thai-draft-2.html" class="draft-card">
+        <span class="card-number">02</span>
+        <span class="card-badge">Draft 2</span>
+        <h2 class="card-title">Rattanakosin Royal</h2>
+        <p class="card-subtitle">รัตนโกสินทร์ราชสำนัก — แดงเข้ม ทอง และพื้นผิวหรูหรา แรงบันดาลใจจากศิลปะวังหลวง</p>
+        <div class="card-cta">
+          ดู Draft นี้
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="thai-draft-3.html" class="draft-card">
+        <span class="card-number">03</span>
+        <span class="card-badge">Draft 3</span>
+        <h2 class="card-title">Thai Contemporary</h2>
+        <p class="card-subtitle">ไทยร่วมสมัย — ผสมผสานลายไทยดั้งเดิมกับ layout สมัยใหม่ กะทัดรัด ใช้งานได้จริง</p>
+        <div class="card-cta">
+          ดู Draft นี้
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="back-row">
+      <a href="index.html" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M12 7H2M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        กลับไปดู Approved Design
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    ช่างนิรันดร์ — Redesign Project &nbsp;·&nbsp; BagIdeaOffice Software House &nbsp;·&nbsp; 2025
+  </footer>
+
+</body>
+</html>

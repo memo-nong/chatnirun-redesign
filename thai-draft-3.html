@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ช่างนิรันดร์ — งานศิลป์ไทย เชียงราย · Thai Contemporary</title>
+  <meta name="description" content="รับสั่งทำ ออกแบบ ผลิตฉัตรพระประธาน ดุนโลหะ ดอกไม้คำ ช่อฟ้า และงานปูนปั้น ฝีมือช่างไทย อ.แม่สรวย จ.เชียงราย มากกว่า 10 ปี">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700;800;900&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       DRAFT 3 — THAI CONTEMPORARY
+       Palette: dark red-brown #7B3A2A · off-white #F8F5F0 · brass #B8860B
+       Mood: new generation meets heritage
+       — largest font sizes, mobile-first, subtle Thai texture
+    ============================================ */
+    :root {
+      --brown:      #7B3A2A;
+      --brown-dk:   #5A2518;
+      --brown-lt:   #9A4E3A;
+      --brass:      #B8860B;
+      --brass-lt:   #D4A82A;
+      --brass-pale: #EDD88A;
+      --offwhite:   #F8F5F0;
+      --offwhite-dk:#EEEAE3;
+      --warm-white: #FFFCF8;
+      --text:       #1C0E08;
+      --text-mid:   #4A2518;
+      --text-muted: #7A5040;
+      --border:     #D8C5B0;
+      --card-bg:    #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Largest base font of the 3 drafts */
+    html { font-size: 20px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Sarabun', sans-serif;
+      color: var(--text);
+      background: var(--offwhite);
+      line-height: 2.0;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ==========================================
+       SUBTLE THAI DIAMOND WATERMARK PATTERN
+       Used as background on hero and section backgrounds
+    ========================================== */
+    .thai-watermark {
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0px, transparent 18px,
+          rgba(184,134,11,0.055) 18px, rgba(184,134,11,0.055) 20px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent 0px, transparent 18px,
+          rgba(184,134,11,0.055) 18px, rgba(184,134,11,0.055) 20px
+        );
+    }
+
+    .thai-watermark-strong {
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0px, transparent 14px,
+          rgba(184,134,11,0.08) 14px, rgba(184,134,11,0.08) 16px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent 0px, transparent 14px,
+          rgba(184,134,11,0.08) 14px, rgba(184,134,11,0.08) 16px
+        );
+    }
+
+    /* ==========================================
+       NAVIGATION — clean, minimal
+    ========================================== */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto;
+      height: 68px;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      background: var(--brown-dk);
+      /* Subtle left accent bar */
+      border-left: 5px solid var(--brass);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
+    }
+    .nav-logo-main {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--offwhite);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--brass-lt);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .nav-logo-sub {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(248,245,240,0.5);
+      font-weight: 300;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: rgba(248,245,240,0.8);
+      transition: color 0.2s;
+      padding-bottom: 2px;
+    }
+    .nav-links a:hover { color: var(--brass-lt); }
+    .nav-links .btn-nav {
+      background: var(--brass);
+      color: var(--text) !important;
+      font-weight: 700;
+      padding: 0.4em 1.3em;
+      border-radius: 40px;
+    }
+    .nav-links .btn-nav:hover { background: var(--brass-lt); }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+    }
+    .nav-burger span { display: block; width: 24px; height: 2px; background: var(--offwhite); border-radius: 2px; }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 68px 0 0;
+      background: rgba(26,10,5,0.97);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      z-index: 800;
+      list-style: none;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--offwhite);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:hover { color: var(--brass-lt); }
+
+    /* ==========================================
+       HERO — contemporary layout, two-column feel
+    ========================================== */
+    #home {
+      min-height: 100vh;
+      background: var(--brown-dk);
+      display: flex;
+      align-items: stretch;
+      padding-top: 68px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle diamond watermark on full hero */
+    #home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg,  transparent 0, transparent 22px, rgba(184,134,11,0.06) 22px, rgba(184,134,11,0.06) 24px),
+        repeating-linear-gradient(-45deg, transparent 0, transparent 22px, rgba(184,134,11,0.06) 22px, rgba(184,134,11,0.06) 24px);
+      pointer-events: none;
+    }
+
+    /* Right side accent block */
+    #home::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 38%;
+      height: 100%;
+      background: rgba(184,134,11,0.05);
+      border-left: 1px solid rgba(184,134,11,0.15);
+      pointer-events: none;
+    }
+
+    .hero-wrap {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      width: 100%;
+      padding: 0 6%;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-left { padding: 5rem 0; }
+
+    .hero-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass-lt);
+      padding: 0.4em 1em;
+      border: 1.5px solid rgba(184,134,11,0.45);
+      border-radius: 40px;
+    }
+    .hero-tag-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--brass-lt);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 900;
+      color: var(--offwhite);
+      line-height: 1.18;
+      margin-bottom: 2rem;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--brass-lt);
+      position: relative;
+    }
+    /* Underline accent on em */
+    .hero-title em::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--brass);
+      opacity: 0.5;
+      border-radius: 2px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(248,245,240,0.75);
+      line-height: 2.1;
+      margin-bottom: 3rem;
+      max-width: 500px;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      background: var(--brass);
+      color: var(--text);
+      font-family: 'Sarabun', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 0.9em 2.2em;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--brass-lt); transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      background: transparent;
+      color: var(--offwhite);
+      font-family: 'Sarabun', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 0.9em 2.2em;
+      border-radius: 40px;
+      border: 1.5px solid rgba(248,245,240,0.35);
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .btn-outline:hover { border-color: rgba(248,245,240,0.7); background: rgba(248,245,240,0.07); }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 5rem 0;
+    }
+
+    /* Quick stats on hero right side */
+    .hero-stat {
+      background: rgba(248,245,240,0.06);
+      border: 1px solid rgba(184,134,11,0.22);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      min-width: 200px;
+    }
+    .hero-stat-num {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--brass-lt);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .hero-stat-lbl { font-size: 0.85rem; color: rgba(248,245,240,0.65); line-height: 1.5; }
+
+    /* ==========================================
+       SHARED
+    ========================================== */
+    section { padding: 96px 6%; }
+
+    .sec-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 0.7rem;
+    }
+
+    .sec-title {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.28;
+      margin-bottom: 1.2rem;
+    }
+
+    .sec-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 2.05;
+      max-width: 600px;
+    }
+
+    /* Thin brass left-bar heading accent */
+    .heading-block {
+      position: relative;
+      padding-left: 1.4rem;
+    }
+    .heading-block::before {
+      content: '';
+      position: absolute;
+      top: 0.2em;
+      left: 0;
+      width: 4px;
+      height: calc(100% - 0.4em);
+      background: var(--brass);
+      border-radius: 4px;
+      opacity: 0.75;
+    }
+
+    /* ==========================================
+       ABOUT — horizontal layout, modern feel
+    ========================================== */
+    #about {
+      background: var(--warm-white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 7%;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+
+    .about-img-box {
+      background: linear-gradient(140deg, var(--brown) 0%, var(--brown-dk) 100%);
+      aspect-ratio: 4/5;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.6rem;
+      color: rgba(248,245,240,0.4);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Diamond watermark in image box */
+    .about-img-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg,  transparent 0, transparent 16px, rgba(184,134,11,0.08) 16px, rgba(184,134,11,0.08) 18px),
+        repeating-linear-gradient(-45deg, transparent 0, transparent 16px, rgba(184,134,11,0.08) 16px, rgba(184,134,11,0.08) 18px);
+      border-radius: 20px;
+    }
+    .about-img-box span { font-size: 4rem; opacity: 0.5; position: relative; }
+
+    .exp-pill {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--brass);
+      color: var(--text);
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1rem;
+      font-weight: 900;
+      padding: 0.5em 1.5em;
+      border-radius: 40px;
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    .about-body {
+      font-size: 1.1rem;
+      color: var(--text-mid);
+      line-height: 2.1;
+      margin-bottom: 1.4rem;
+    }
+    .about-body strong { color: var(--text); }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--offwhite-dk);
+      margin-top: 1rem;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 1rem;
+      background: var(--offwhite);
+      border-radius: 12px;
+    }
+    .stat-num {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--brown);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-lbl { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ==========================================
+       CATALOG — clean card grid
+    ========================================== */
+    #catalog {
+      background: var(--offwhite);
+    }
+
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .work-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .work-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 44px rgba(123,58,42,0.14);
+    }
+
+    .work-card-color {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Subtle watermark on card color bands */
+    .work-card-color::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg,  transparent 0, transparent 10px, rgba(255,255,255,0.06) 10px, rgba(255,255,255,0.06) 12px),
+        repeating-linear-gradient(-45deg, transparent 0, transparent 10px, rgba(255,255,255,0.06) 10px, rgba(255,255,255,0.06) 12px);
+    }
+
+    .wc1 { background: linear-gradient(140deg, #7B3A2A 0%, #4A1C10 100%); }
+    .wc2 { background: linear-gradient(140deg, #5C3A1A 0%, #3A2010 100%); }
+    .wc3 { background: linear-gradient(140deg, #1E3A2F 0%, #0E2018 100%); }
+    .wc4 { background: linear-gradient(140deg, #2A1F4E 0%, #16103A 100%); }
+    .wc5 { background: linear-gradient(140deg, #3D1A00 0%, #2A0D00 100%); }
+    .wc6 { background: linear-gradient(140deg, #1A3A3A 0%, #0D2020 100%); }
+
+    .work-card.featured .work-card-color { height: 180px; font-size: 3.5rem; }
+
+    .work-card-body { padding: 1.6rem; }
+    .work-card-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 0.5rem;
+      background: rgba(184,134,11,0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .work-card-name {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .work-card.featured .work-card-name { font-size: 1.6rem; }
+    .work-card-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.9; }
+
+    .work-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+    .work-card.featured .work-card-color {
+      width: 280px;
+      height: auto;
+      border-radius: 0;
+    }
+    .work-card.featured .work-card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* ==========================================
+       HOW TO ORDER — horizontal steps, big icons
+    ========================================== */
+    #how-to-order {
+      background: var(--brown-dk);
+    }
+    #how-to-order .sec-eyebrow { color: var(--brass-pale); }
+    #how-to-order .sec-title { color: var(--offwhite); }
+    #how-to-order .sec-desc { color: rgba(248,245,240,0.65); }
+
+    .how-header { text-align: center; max-width: 640px; margin: 0 auto 4rem; }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+    .steps-row::before {
+      content: '';
+      position: absolute;
+      top: 2.6rem;
+      left: calc(16.67% + 1rem);
+      right: calc(16.67% + 1rem);
+      height: 2px;
+      background: linear-gradient(90deg, var(--brass) 40%, transparent);
+      opacity: 0.3;
+    }
+    .steps-row::after {
+      content: '';
+      position: absolute;
+      top: 2.6rem;
+      left: calc(16.67% + 1rem);
+      right: calc(16.67% + 1rem);
+      height: 2px;
+      background: linear-gradient(270deg, var(--brass) 40%, transparent);
+      opacity: 0.3;
+    }
+
+    .step-card {
+      background: rgba(248,245,240,0.05);
+      border: 1px solid rgba(184,134,11,0.22);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .step-card:hover {
+      background: rgba(248,245,240,0.09);
+      border-color: rgba(184,134,11,0.4);
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--brass);
+      color: var(--text);
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.45rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .step-emoji { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .step-title {
+      font-family: 'Noto Serif Thai', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--offwhite);
+      margin-bottom: 0.9rem;
+    }
+    .step-body { font-size: 0.95rem; color: rgba(248,245,240,0.65); line-height: 2.0; }
+
+    /* ==========================================
+       CONTACT
+    ========================================== */
+    #contact {
+      background: var(--warm-white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6%;
+      margin-top: 3rem;
+      align-items: start;
+    }
+
+    .c-row {
+      display: flex;
+      gap: 1.2rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--offwhite-dk);
+      align-items: flex-start;
+    }
+    .c-row:last-of-type { border-bottom: none; }
+
+    .c-ico {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      background: rgba(123,58,42,0.08);
+      border: 1.5px solid rgba(123,58,42,0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-top: 2px;
+    }
+    .c-lbl {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 0.3rem;
+    }
+    .c-val { font-size: 1.05rem; color: var(--text); line-height: 1.7; }
+    .c-val a { color: var(--text); transition: color 0.2s; }
+    .c-val a:hover { color: var(--brown); }
+
+    .cta-buttons { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 1.2rem; }
+
+    .cta-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.5rem;
+      border-radius: 14px;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      min-height: 66px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.18); }
+    .cta-tel  { background: var(--brown); color: var(--offwhite); }
+    .cta-line { background: #06C755; color: #fff; }
+    .cta-web  { background: var(--offwhite-dk); color: var(--text); border: 1px solid var(--border); }
+
+    .cta-btn-ico {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.18);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .cta-btn-txt { display: flex; flex-direction: column; gap: 2px; }
+    .cta-sub  { font-size: 0.7rem; font-weight: 400; opacity: 0.75; }
+    .cta-main { font-size: 1.05rem; font-weight: 700; }
+
+    .contact-right-box {
+      background: var(--offwhite);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .map-placeholder {
+      width: 100%;
+      height: 260px;
+      background: var(--offwhite-dk);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .map-placeholder:hover { background: var(--border); }
+    .map-ico { font-size: 3rem; opacity: 0.55; }
+    .hours-box { padding: 1.6rem; }
+    .hours-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 1.2rem;
+    }
+    .hour-row {
+      display: flex;
+      gap: 0.9rem;
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--offwhite-dk);
+      line-height: 1.65;
+      align-items: flex-start;
+    }
+    .hour-row:last-child { border-bottom: none; }
+    .hour-row strong { color: var(--text); }
+    .h-i { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* ==========================================
+       FOOTER — clean, light
+    ========================================== */
+    footer {
+      background: var(--brown-dk);
+      padding: 3.5rem 6% 2rem;
+      /* Brass top border */
+      border-top: 4px solid var(--brass);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(184,134,11,0.15);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-name { font-family: 'Noto Serif Thai', serif; font-size: 1.5rem; font-weight: 800; color: var(--brass-lt); margin-bottom: 0.4rem; }
+    .footer-sub { font-size: 0.78rem; color: rgba(248,245,240,0.38); line-height: 1.75; }
+
+    .footer-nav { display: flex; gap: 2rem; flex-wrap: wrap; list-style: none; align-items: flex-start; }
+    .footer-nav a { font-size: 0.88rem; color: rgba(248,245,240,0.45); transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--brass-lt); }
+
+    .footer-contact-info { font-size: 0.88rem; color: rgba(248,245,240,0.5); line-height: 1.9; text-align: right; }
+    .footer-contact-info a { color: rgba(248,245,240,0.72); transition: color 0.2s; }
+    .footer-contact-info a:hover { color: var(--brass-lt); }
+
+    .footer-copy { text-align: center; font-size: 0.72rem; color: rgba(255,255,255,0.2); letter-spacing: 0.06em; }
+
+    /* ==========================================
+       RESPONSIVE — mobile-first priority
+    ========================================== */
+    @media (max-width: 1024px) {
+      .hero-right { display: none; }
+      .hero-wrap { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img-box { max-width: 380px; margin: 0 auto; aspect-ratio: 3/2; }
+      .exp-pill { bottom: 1rem; }
+      .work-card.featured { grid-template-columns: 1fr; }
+      .work-card.featured .work-card-color { width: 100%; height: 180px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-contact-info { text-align: left; }
+    }
+
+    @media (max-width: 680px) {
+      html { font-size: 18px; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .hero-left { padding: 3.5rem 0; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions > * { justify-content: center; width: 100%; }
+      .work-grid { grid-template-columns: 1fr; }
+      .steps-row { grid-template-columns: 1fr; }
+      .steps-row::before, .steps-row::after { display: none; }
+      .about-stats { grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
+      .stat-item { padding: 0.8rem 0.5rem; }
+      .stat-num { font-size: 2rem; }
+      .footer-inner { flex-direction: column; }
+      .footer-contact-info { text-align: left; }
+    }
+
+    @media (max-width: 420px) {
+      .hero-title { font-size: 2.6rem; }
+      .about-stats { grid-template-columns: 1fr 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <a href="#home" class="nav-brand">
+    <span class="nav-logo-main">ช่างนิรันดร์</span>
+    <div class="nav-logo-dot"></div>
+    <span class="nav-logo-sub">Artisan · Chiang Rai</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">เกี่ยวกับเรา</a></li>
+    <li><a href="#catalog">ผลงาน</a></li>
+    <li><a href="#how-to-order">วิธีสั่งงาน</a></li>
+    <li><a href="#contact" class="btn-nav">ติดต่อเรา</a></li>
+  </ul>
+  <button class="nav-burger" id="navBurger" aria-label="เปิดเมนู">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<ul class="nav-mobile" id="navMobile">
+  <li><a href="#home"         onclick="closeMobile()">หน้าแรก</a></li>
+  <li><a href="#about"        onclick="closeMobile()">เกี่ยวกับเรา</a></li>
+  <li><a href="#catalog"      onclick="closeMobile()">ผลงาน</a></li>
+  <li><a href="#how-to-order" onclick="closeMobile()">วิธีสั่งงาน</a></li>
+  <li><a href="#contact"      onclick="closeMobile()" style="color:var(--brass-lt);">ติดต่อเรา</a></li>
+</ul>
+
+
+<!-- ===== HERO ===== -->
+<section id="home" aria-label="Hero">
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <div class="hero-tag-row">
+        <div class="hero-tag">
+          <div class="hero-tag-dot"></div>
+          ช่างศิลป์ไทย เชียงราย · 10 ปี+
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        ฝีมือช่างศิลป์<br>
+        <em>สืบสานมรดก</em><br>
+        แผ่นดินไทย
+      </h1>
+
+      <p class="hero-subtitle">
+        รับสั่งทำ ออกแบบ และผลิตงานศิลปะไทยทุกรูปแบบ
+        ทั้งฉัตรพระประธาน งานดุนโลหะ ช่อฟ้า ดอกไม้คำ และงานปูนปั้น
+        ด้วยฝีมือแท้จากเชียงราย
+      </p>
+
+      <div class="hero-actions">
+        <a href="#catalog" class="btn-primary">🏺 ดูผลงานทั้งหมด</a>
+        <a href="#contact" class="btn-outline">📞 สอบถามราคา</a>
+      </div>
+    </div>
+
+    <div class="hero-right" aria-hidden="true">
+      <div class="hero-stat">
+        <div class="hero-stat-num">10+</div>
+        <div class="hero-stat-lbl">ปีประสบการณ์</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100+</div>
+        <div class="hero-stat-lbl">ผลงานวัดทั่วไทย</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">6+</div>
+        <div class="hero-stat-lbl">ประเภทงานศิลปะ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="heading-block">
+    <div class="sec-eyebrow">เกี่ยวกับเรา</div>
+    <h2 class="sec-title">ฝีมือช่างแท้<br>จากเชียงราย</h2>
+  </div>
+
+  <div class="about-grid">
+    <div style="position:relative;">
+      <div class="about-img-box">
+        <span>🏺</span>
+        <div>ภาพช่างและผลงาน<br><small style="opacity:.55;font-size:.75em;">(แทนด้วยรูปจริงในการผลิต)</small></div>
+      </div>
+      <div class="exp-pill">✦ ประสบการณ์กว่า 10 ปี</div>
+    </div>
+
+    <div>
+      <p class="about-body">
+        ร้านช่างนิรันดร์ตั้งอยู่ที่ <strong>ม.11 หมู่บ้านป่าตึงงาม ตำบลเจดีย์หลวง
+        อำเภอแม่สรวย จังหวัดเชียงราย</strong> นำทีมโดย
+        <strong>ช่างนิรันดร์ อุ่นต๊ะ</strong> ผู้สืบทอดศิลปะไทยล้านนา
+        ที่ดำเนินงานมามากกว่า 10 ปี
+      </p>
+      <p class="about-body">
+        เราเชี่ยวชาญในงานศิลปะทางพระพุทธศาสนาและสถาปัตยกรรมไทย
+        ทั้งฉัตรพระประธาน งานดุนโลหะ ช่อฟ้า สัปโทน ดอกไม้คำ
+        และงานปูนปั้น ทุกชิ้นผลิตด้วยมือและความตั้งใจ
+        ทุกรูปแบบ ทุกขนาด ตามความต้องการของลูกค้า
+      </p>
+
+      <div class="about-stats">
+        <div class="stat-item"><div class="stat-num">10+</div><div class="stat-lbl">ปีประสบการณ์</div></div>
+        <div class="stat-item"><div class="stat-num">100+</div><div class="stat-lbl">ผลงานวัดทั่วไทย</div></div>
+        <div class="stat-item"><div class="stat-num">6+</div><div class="stat-lbl">ประเภทงานศิลปะ</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== CATALOG ===== -->
+<section id="catalog">
+  <div class="catalog-header">
+    <div>
+      <div class="sec-eyebrow">ผลงานและบริการ</div>
+      <h2 class="sec-title">งานของเรา</h2>
+      <p class="sec-desc">ผลิตทุกรูปแบบ ทุกขนาด รับออกแบบตามสั่ง เพื่อให้ตรงกับความต้องการของแต่ละวัดและสถานที่</p>
+    </div>
+    <a href="#contact" class="btn-primary" style="align-self:flex-start;margin-top:1.5rem;">สั่งงานได้เลย →</a>
+  </div>
+
+  <div class="work-grid">
+
+    <div class="work-card featured" role="article" aria-label="ฉัตรพระประธาน">
+      <div class="work-card-color wc1">☂</div>
+      <div class="work-card-body">
+        <div class="work-card-tag">ผลงานเด่น</div>
+        <div class="work-card-name">ฉัตรพระประธาน</div>
+        <div class="work-card-desc">ฉัตรพื้นเมือง · ฉัตรประยุกต์ · ฉัตรตั้งศาลพระภูมิ<br>รับออกแบบตามสั่ง ทุกขนาด ทุกรูปแบบ</div>
+      </div>
+    </div>
+
+    <div class="work-card"><div class="work-card-color wc2">🔨</div><div class="work-card-body"><div class="work-card-tag">งานโลหะ</div><div class="work-card-name">ดุนโลหะและตกแต่ง</div><div class="work-card-desc">งานดุนโลหะประดับตกแต่งกุฏิ โบสถ์ และสถานที่ศักดิ์สิทธิ์</div></div></div>
+    <div class="work-card"><div class="work-card-color wc3">🌸</div><div class="work-card-body"><div class="work-card-tag">งานดอกไม้</div><div class="work-card-name">ดอกไม้คำ</div><div class="work-card-desc">ดอกไม้ทองคำล้านนา งานฝีมือประณีต ใช้ในงานพิธีและถวาย</div></div></div>
+    <div class="work-card"><div class="work-card-color wc4">🏛</div><div class="work-card-body"><div class="work-card-tag">สถาปัตยกรรม</div><div class="work-card-name">ช่อฟ้า</div><div class="work-card-desc">ช่อฟ้า หน้าบัน รวมงานตกแต่งยอดหลังคา</div></div></div>
+    <div class="work-card"><div class="work-card-color wc5">🔱</div><div class="work-card-body"><div class="work-card-tag">ตกแต่ง</div><div class="work-card-name">สัปโทน & บางแทรก</div><div class="work-card-desc">ตงกระด้าง พุ่มดอก งานต้องประกอบแยกส่วน</div></div></div>
+    <div class="work-card"><div class="work-card-color wc6">🏺</div><div class="work-card-body"><div class="work-card-tag">ปูนปั้น</div><div class="work-card-name">งานปูนปั้น</div><div class="work-card-desc">ปูนปั้นรูปเทวดา สัตว์ และปูนปั้นสำเร็จรูป</div></div></div>
+
+  </div>
+</section>
+
+
+<!-- ===== HOW TO ORDER ===== -->
+<section id="how-to-order">
+  <div class="how-header">
+    <div class="sec-eyebrow">วิธีสั่งงาน</div>
+    <h2 class="sec-title">สั่งงานง่าย 3 ขั้นตอน</h2>
+    <p class="sec-desc">ไม่มีขั้นตอนยุ่งยาก ติดต่อช่างได้โดยตรง ยินดีให้คำปรึกษาฟรี ไม่ว่าจะเป็นงานเล็กหรืองานใหญ่</p>
+  </div>
+
+  <div class="steps-row">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <span class="step-emoji">📞</span>
+      <h3 class="step-title">ติดต่อสอบถาม</h3>
+      <p class="step-body">โทรหรือส่ง LINE มาปรึกษาช่างได้เลย บอกลักษณะงาน ขนาด หรือรูปแบบที่ต้องการ ช่างยินดีแนะนำฟรีทุกกรณี</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <span class="step-emoji">✏️</span>
+      <h3 class="step-title">ออกแบบและยืนยัน</h3>
+      <p class="step-body">ช่างจะออกแบบและเสนอราคาให้ท่าน เมื่อพอใจและยืนยัน จะเริ่มผลิตทันที พร้อมอัปเดตความคืบหน้าระหว่างทาง</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <span class="step-emoji">🚚</span>
+      <h3 class="step-title">รับงานและติดตั้ง</h3>
+      <p class="step-body">รับงานที่ร้านหรือจัดส่ง มีบริการติดตั้งในภาคเหนือและทั่วประเทศ ตามการนัดหมายล่วงหน้า</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="heading-block">
+    <div class="sec-eyebrow">ติดต่อเรา</div>
+    <h2 class="sec-title">พร้อมรับงานทุกวัน</h2>
+    <p class="sec-desc">ยินดีให้คำปรึกษาฟรี ตอบทุกคำถามเรื่องงานศิลป์ไทย ไม่ว่าจะเป็นงานเล็กหรืองานใหญ่</p>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      <div class="c-row"><div class="c-ico">📍</div><div><div class="c-lbl">ที่อยู่ร้าน</div><div class="c-val">ร้านช่างนิรันดร์ ม.11 หมู่บ้านป่าตึงงาม<br>ต.เจดีย์หลวง อ.แม่สรวย จ.เชียงราย</div></div></div>
+      <div class="c-row"><div class="c-ico">👨‍🎨</div><div><div class="c-lbl">ช่างผู้รับงาน</div><div class="c-val">ช่างนิรันดร์ อุ่นต๊ะ</div></div></div>
+      <div class="c-row"><div class="c-ico">📱</div><div><div class="c-lbl">โทรศัพท์</div><div class="c-val"><a href="tel:0960787242">096-078-7242</a></div></div></div>
+      <div class="c-row"><div class="c-ico">📧</div><div><div class="c-lbl">อีเมล</div><div class="c-val"><a href="mailto:n_irundorn@hotmail.com">n_irundorn@hotmail.com</a></div></div></div>
+      <div class="cta-buttons">
+        <a href="tel:0960787242" class="cta-btn cta-tel"><div class="cta-btn-ico">📞</div><div class="cta-btn-txt"><span class="cta-sub">โทรหาช่างได้เลย</span><span class="cta-main">096-078-7242</span></div></a>
+        <a href="#" class="cta-btn cta-line"><div class="cta-btn-ico">💬</div><div class="cta-btn-txt"><span class="cta-sub">ส่งข้อความผ่าน LINE</span><span class="cta-main">@chatnirun</span></div></a>
+        <a href="http://www.chatnirun.com" target="_blank" rel="noopener" class="cta-btn cta-web"><div class="cta-btn-ico">🌐</div><div class="cta-btn-txt"><span class="cta-sub">เว็บไซต์เดิม</span><span class="cta-main">www.chatnirun.com</span></div></a>
+      </div>
+    </div>
+
+    <div class="contact-right-box">
+      <div class="map-placeholder">
+        <div class="map-ico">🗺</div>
+        <div>แผนที่ Google Maps<br><small style="opacity:.7;">อ.แม่สรวย จ.เชียงราย</small></div>
+      </div>
+      <div class="hours-box">
+        <div class="hours-title">ข้อมูลเพิ่มเติม</div>
+        <div class="hour-row"><span class="h-i">🕐</span><div><strong>เวลาทำการ</strong><br>จันทร์ – เสาร์ เวลา 08:00 – 18:00 น.</div></div>
+        <div class="hour-row"><span class="h-i">🚗</span><div><strong>การเดินทาง</strong><br>ห่างจากตัวเมืองเชียงราย ประมาณ 45 กม. ตาม ทล.118</div></div>
+        <div class="hour-row"><span class="h-i">📦</span><div><strong>จัดส่งทั่วประเทศ</strong><br>โดยการนัดหมายล่วงหน้า มีบริการติดตั้งในภาคเหนือ</div></div>
+        <div class="hour-row"><span class="h-i">💬</span><div><strong>ตอบกลับเร็ว</strong><br>ส่งรูปหรือบอกรายละเอียดงานผ่าน LINE ได้ตลอดเวลา</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">ช่างนิรันดร์</div>
+      <div class="footer-sub">งานศิลป์ไทย · อ.แม่สรวย จ.เชียงราย<br>ดำเนินงานโดย ช่างนิรันดร์ อุ่นต๊ะ</div>
+    </div>
+    <ul class="footer-nav">
+      <li><a href="#home">หน้าแรก</a></li>
+      <li><a href="#about">เกี่ยวกับเรา</a></li>
+      <li><a href="#catalog">ผลงาน</a></li>
+      <li><a href="#how-to-order">สั่งงาน</a></li>
+      <li><a href="#contact">ติดต่อ</a></li>
+    </ul>
+    <div class="footer-contact-info">
+      <div>📞 <a href="tel:0960787242">096-078-7242</a></div>
+      <div>📧 <a href="mailto:n_irundorn@hotmail.com">n_irundorn@hotmail.com</a></div>
+      <div style="margin-top:.4rem;font-size:.72rem;opacity:.55;">จ.-ส. 08:00–18:00 น.</div>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 ร้านช่างนิรันดร์ · อ.แม่สรวย จ.เชียงราย · สงวนลิขสิทธิ์ทุกประการ</div>
+</footer>
+
+
+<script>
+(function(){
+  var burger = document.getElementById('navBurger');
+  var menu = document.getElementById('navMobile');
+  var open = false;
+  burger.addEventListener('click', function(){
+    open = !open;
+    menu.classList.toggle('open', open);
+  });
+  window.closeMobile = function(){
+    open = false;
+    menu.classList.remove('open');
+  };
+})();
+</script>
+</body>
+</html>
